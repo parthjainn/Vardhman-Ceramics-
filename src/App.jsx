@@ -1,20 +1,25 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import Hello from './components/Hello'
+import spider from '../public/spider.jpg'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [showSpider, setShowSpider] = useState(false)
 
   return (
     <>
+      <Hello onClick={() => setShowSpider(true)} />
       <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+        {showSpider && (
+          <div className="hero">
+            <img src={spider} className="base" width="170" height="179" alt="Spider-Man" />
+            <img src={reactLogo} className="framework" alt="React logo" />
+            <img src={viteLogo} className="vite" alt="Vite logo" />
+          </div>
+        )}
         <div>
           <h1>SUBSCRIBE</h1>
           <p>
