@@ -1,85 +1,74 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { partners } from "../data";
 
 export function PartnersMarquee() {
-  const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  const viewportRef = useRef(null);
   const trackRef = useRef(null);
+  const offsetRef = useRef(0);
+  const maxOffsetRef = useRef(0);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    const section = sectionRef.current;
+    const viewport = viewportRef.current;
     const track = trackRef.current;
-
-    if (!section || !track) return;
-
-    let frame = 0;
+    if (!viewport || !track) return;
 
     const measure = () => {
-      const distance = Math.max(
-        0,
-        track.scrollWidth - window.innerWidth
-      );
-
-      section.style.height = `${window.innerHeight + distance}px`;
+      maxOffsetRef.current = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      offsetRef.current = Math.min(offsetRef.current, maxOffsetRef.current);
+      setOffset(offsetRef.current);
     };
-
-    const update = () => {
-      const distance = track.scrollWidth - window.innerWidth;
-      const scrollableHeight = section.offsetHeight - window.innerHeight;
-
-      if (scrollableHeight <= 0) return;
-
-      const progress = -section.getBoundingClientRect().top / scrollableHeight;
-      const clamped = Math.max(0, Math.min(1, progress));
-      const x = -distance * clamped;
-
-      track.style.transform = `translate3d(${x}px, 0, 0)`;
-    };
-
-    const onScroll = () => {
-      if (frame) return;
-
-      frame = requestAnimationFrame(() => {
-        update();
-        frame = 0;
-      });
-    };
-
-    const resizeObserver = new ResizeObserver(() => {
-      measure();
-      update();
-    });
-
-    resizeObserver.observe(track);
 
     measure();
-    update();
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", measure);
+    const observer = new ResizeObserver(measure);
+    observer.observe(viewport);
+    observer.observe(track);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleWheel = (event) => {
+      const maxOffset = maxOffsetRef.current;
+      if (maxOffset <= 0) return;
+
+      const currentOffset = offsetRef.current;
+      const nextOffset = Math.min(Math.max(currentOffset + event.deltaY, 0), maxOffset);
+
+      if (nextOffset !== currentOffset) {
+        event.preventDefault();
+        offsetRef.current = nextOffset;
+        setOffset(nextOffset);
+      }
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
-      resizeObserver.disconnect();
-
-      if (frame) {
-        cancelAnimationFrame(frame);
-      }
+      container.removeEventListener("wheel", handleWheel);
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-paper border-y border-ink/5" aria-label="Brand partners" data-reveal>
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div ref={trackRef} className="flex h-full will-change-transform">
-          {partners.map(brand => (
-            <div key={brand} className="h-full shrink-0 flex items-center justify-center px-[clamp(32px,5vw,64px)] font-inter font-extrabold text-[clamp(48px,6vw,84px)] tracking-[-0.03em] text-ink/10 transition-colors duration-normal cursor-default hover:text-charcoal">
-              {brand}
-            </div>
-          ))}
-          {/* duplicate for more content to scroll */}
-          {partners.map(brand => (
-            <div key={brand + "-dup"} aria-hidden="true" className="h-full shrink-0 flex items-center justify-center px-[clamp(32px,5vw,64px)] font-inter font-extrabold text-[clamp(48px,6vw,84px)] tracking-[-0.03em] text-ink/10 transition-colors duration-normal cursor-default hover:text-charcoal">
+    <section ref={containerRef} className="bg-paper border-y border-ink/5" aria-label="Brand partners" data-reveal>
+      <div ref={viewportRef} className="overflow-hidden">
+        <div
+          ref={trackRef}
+          className="flex h-full items-center will-change-transform"
+          style={{
+            transform: `translate3d(-${offset}px, 0, 0)`,
+          }}
+        >
+          {partners.map((brand, index) => (
+            <div 
+              key={`${brand}-${index}`} 
+              className="h-full shrink-0 flex items-center justify-center px-[clamp(16px,2.6vw,36px)] font-inter font-extrabold text-[clamp(44px,6vw,84px)] text-ink/10 transition-colors duration-normal cursor-default hover:text-charcoal whitespace-nowrap"
+            >
               {brand}
             </div>
           ))}
