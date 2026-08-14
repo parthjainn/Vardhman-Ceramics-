@@ -37,7 +37,7 @@ export default function StoreLocator() {
           }
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.18 },
+      { rootMargin: "0px", threshold: 0 },
     );
 
     elements.forEach((element) => observer.observe(element));

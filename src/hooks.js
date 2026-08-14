@@ -18,7 +18,7 @@ export function useRevealMotion() {
           }
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.16 },
+      { rootMargin: "0px", threshold: 0 },
     );
 
     animated.forEach((element) => observer.observe(element));

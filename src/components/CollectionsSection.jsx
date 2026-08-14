@@ -54,7 +54,7 @@ export function CollectionsSection() {
           className="flex gap-6 overflow-x-auto pb-8 pt-4 pr-[max(var(--page-pad),calc((100vw_-_1480px)_/_2))] scrollbar-hide snap-x snap-mandatory" 
           ref={trackRef}
         >
-          {categories.map(([name, detail, image, slug], index) => (
+          {categories.map(([name, detail, image, slug]) => (
             <a
               key={name}
               href={`/${slug}`}
