@@ -22,13 +22,13 @@ export function CollectionsSection() {
       className="relative h-[300vh] bg-brand-sand" 
       id="collections"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-[90px]">
-        <div className="px-6 md:px-12 max-w-[1600px] w-full mx-auto mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 flex-shrink-0">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden pt-[120px] md:pt-[160px]">
+        <div className="px-6 md:px-12 max-w-[1600px] w-full mx-auto mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 flex-shrink-0">
           <div className="max-w-2xl">
             <span className="text-brand-gray font-sans font-medium uppercase tracking-widest text-sm mb-4 block">
               Curated Collections
             </span>
-            <h2 className="text-brand-black font-serif text-4xl md:text-6xl leading-[1.1] m-0">
+            <h2 className="text-brand-black font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.1] m-0">
               Find the best bathware, taps, and fittings for your beautiful home.
             </h2>
           </div>
@@ -36,7 +36,7 @@ export function CollectionsSection() {
           <a
             href="#store-locator"
             onClick={(e) => handleScroll(e, "store-locator")}
-            className="group flex items-center gap-3 text-brand-black font-sans font-medium text-sm pb-1 border-b border-brand-black transition-colors"
+            className="group flex items-center gap-2 md:gap-3 text-brand-black font-sans font-medium text-sm pb-1 border-b border-brand-black transition-colors mt-4 md:mt-0"
           >
             Explore all ranges
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -62,11 +62,11 @@ export function CollectionsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent pointer-events-none" />
                 
                 <div className="absolute left-6 right-6 bottom-8 md:left-10 md:right-10 md:bottom-10 z-10">
-                  <h3 className="font-serif text-3xl md:text-4xl mb-3 tracking-wide">{name}</h3>
-                  <p className="font-sans text-brand-sand text-sm md:text-base leading-relaxed line-clamp-3 mb-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+                  <h3 className="font-serif text-2xl md:text-4xl mb-2 md:mb-3 tracking-wide">{name}</h3>
+                  <p className="font-sans text-brand-sand text-xs sm:text-sm md:text-base leading-relaxed line-clamp-3 mb-4 md:mb-6 opacity-100 translate-y-0 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500">
                     {detail}
                   </p>
-                  <div className="w-12 h-[1px] bg-brand-gold origin-left transition-all duration-500 group-hover:w-full" />
+                  <div className="w-12 h-[1px] bg-brand-gold origin-left transition-all duration-500 md:w-0 md:group-hover:w-full" />
                 </div>
               </a>
             ))}

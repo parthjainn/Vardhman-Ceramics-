@@ -47,7 +47,7 @@ export default function StoreLocator() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-brand-black font-serif text-4xl md:text-6xl leading-[1.1] m-0"
+              className="text-brand-black font-serif text-3xl sm:text-4xl md:text-6xl leading-[1.1] m-0"
             >
               Experience elegance in person.
             </motion.h2>
@@ -61,7 +61,7 @@ export default function StoreLocator() {
             href={storeMapUrl}
             target="_blank"
             rel="noreferrer"
-            className="px-8 py-3 border border-brand-black text-brand-black font-sans font-medium text-sm hover:bg-brand-black hover:text-brand-white transition-colors duration-300 rounded-full"
+            className="px-8 py-3 border border-brand-black text-brand-black font-sans font-medium text-sm hover:bg-brand-black hover:text-brand-white transition-colors duration-300 rounded-full w-full sm:w-auto text-center"
           >
             Get Directions
           </motion.a>
@@ -69,7 +69,7 @@ export default function StoreLocator() {
 
         <motion.div 
           style={{ scale }}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-none overflow-hidden bg-brand-white shadow-2xl z-10"
+          className="relative w-full aspect-[4/3] md:aspect-[21/9] rounded-none overflow-hidden bg-brand-white shadow-2xl z-10"
         >
           <MapContainer center={position} zoom={18} scrollWheelZoom={false} attributionControl={false} style={{ height: "100%", width: "100%", zIndex: 1 }}>
             <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />

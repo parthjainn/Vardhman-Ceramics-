@@ -32,7 +32,7 @@ export function SubnichePage({ category }) {
             <p className="mb-4 text-brand-gray font-sans font-medium text-xs tracking-[0.15em] uppercase">
               Collection
             </p>
-            <h1 className="m-0 text-brand-black font-serif font-semibold text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight">
+            <h1 className="m-0 text-brand-black font-serif font-semibold text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight">
               {name}
             </h1>
             <p className="max-w-md my-8 md:my-10 text-brand-black/70 font-sans text-base md:text-lg leading-relaxed">

@@ -31,7 +31,7 @@ export function LookbookSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-brand-black font-serif text-4xl md:text-6xl max-w-3xl mx-auto leading-tight"
+          className="text-brand-black font-serif text-3xl sm:text-4xl md:text-6xl max-w-3xl mx-auto leading-tight"
         >
           Spaces transformed by exceptional detail.
         </motion.h2>

@@ -42,7 +42,7 @@ export function HeroCarousel() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
-            className="text-brand-white font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-6"
+            className="text-brand-white font-serif text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-6"
           >
             Premium Bathware <br />
             <span className="italic text-brand-sand">& Elegance</span>
