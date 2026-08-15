@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { categories } from "../data";
 import { handleScroll } from "../utils";
 import { ArrowRight } from "lucide-react";
@@ -26,10 +26,17 @@ export function CollectionsSection() {
       const viewportWidth = viewportRef.current.clientWidth - viewportPaddingLeft;
       const trackWidth = trackRef.current.scrollWidth;
       const nextMaxTranslate = Math.min(0, viewportWidth - trackWidth);
-      const stickyHeight = window.innerHeight;
+      const isMediumViewport = window.matchMedia("(min-width: 768px)").matches;
+      const scrollBudgetRatio = isMediumViewport ? 0.1 : 0.22;
+      const maxScrollBudget = isMediumViewport ? 120 : 180;
+      const scrollBudget = Math.min(
+        Math.abs(nextMaxTranslate),
+        window.innerHeight * scrollBudgetRatio,
+        maxScrollBudget,
+      );
 
       setMaxTranslate(nextMaxTranslate);
-      setSectionHeight(Math.max(window.innerHeight * 1.1, stickyHeight + Math.abs(nextMaxTranslate)));
+      setSectionHeight(window.innerHeight + scrollBudget);
     };
 
     updateTrackBounds();
@@ -41,7 +48,8 @@ export function CollectionsSection() {
     return () => resizeObserver.disconnect();
   }, []);
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, maxTranslate]);
+  const targetX = useTransform(scrollYProgress, [0, 1], [0, maxTranslate]);
+  const x = useSpring(targetX, { stiffness: 55, damping: 48, mass: 1.2 });
 
   return (
     <section
@@ -50,8 +58,8 @@ export function CollectionsSection() {
       className="relative bg-brand-sand"
       id="collections"
     >
-      <div className="sticky top-0 h-svh flex flex-col justify-start overflow-hidden pt-[108px] pb-8 md:pt-[120px] md:pb-10">
-        <div className="px-6 md:px-12 max-w-[1600px] w-full mx-auto mb-6 md:mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-5 md:gap-8 flex-shrink-0">
+      <div className="sticky top-0 h-svh flex flex-col justify-start overflow-hidden pt-[96px] pb-6 md:pt-[94px] md:pb-6">
+        <div className="px-6 md:px-12 max-w-[1600px] w-full mx-auto mb-5 md:mb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-5 md:gap-6 flex-shrink-0">
           <div className="max-w-2xl">
             <span className="text-brand-gray font-sans font-medium uppercase tracking-widest text-sm mb-4 block">
               Curated Collections
@@ -81,7 +89,7 @@ export function CollectionsSection() {
               <a
                 key={name}
                 href={`/${slug}`}
-                className="relative group flex aspect-square w-[min(78vw,46svh)] sm:w-[min(52vw,46svh)] md:w-[min(34vw,46svh)] lg:w-[min(26vw,46svh)] max-w-[520px] flex-shrink-0 items-end overflow-hidden bg-brand-charcoal p-6 text-brand-white md:p-10"
+                className="relative group flex aspect-square w-[min(78vw,52svh)] sm:w-[min(52vw,52svh)] md:w-[min(34vw,52svh)] lg:w-[min(26vw,52svh)] max-w-[520px] flex-shrink-0 items-end overflow-hidden bg-brand-charcoal p-6 text-brand-white md:p-10"
               >
                 <img
                   className="absolute inset-0 w-full h-full object-cover origin-center opacity-80 transition-transform duration-1000 group-hover:scale-105"
