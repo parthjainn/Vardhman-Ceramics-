@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { heroSlides } from "../data";
 import { handleScroll } from "../utils";
+import { ArrowDown } from "lucide-react";
 
 export function HeroCarousel() {
   const [active, setActive] = useState(0);
@@ -8,36 +10,88 @@ export function HeroCarousel() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % heroSlides.length);
-    }, 4500);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-charcoal" data-reveal="image">
-      <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: "linear-gradient(180deg, transparent 40%, rgba(29, 28, 24, 0.65)), linear-gradient(90deg, rgba(29, 28, 24, 0.15), transparent 50%)" }}></div>
-      {heroSlides.map((slide, i) => (
-        <img
-          key={i}
-          src={slide.src}
-          alt={slide.alt}
-          className={`absolute inset-0 w-full h-full block object-cover object-center saturate-[0.78] contrast-[1.04] transition-[opacity,transform] ease-[cubic-bezier(0.16,1,0.3,1)] duration-[1.2s,7s] will-change-[opacity,transform] ${i === active ? "opacity-100 scale-100 z-0" : "opacity-0 scale-[1.06]"}`}
-          style={{ transitionProperty: "opacity, transform", transitionDuration: i === active ? "1.2s, 7s" : "1.2s, 0s" }}
-        />
-      ))}
-      <div className="absolute bottom-6 right-6 sm:bottom-8 sm:right-8 z-[2] flex items-center gap-[18px]">
-        <div className="flex gap-2 items-center">
+    <div className="relative w-full h-[100svh] overflow-hidden bg-brand-charcoal">
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={active}
+          className="absolute inset-0 w-full h-full"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: [0.76, 0, 0.24, 1] }}
+        >
+          <img
+            src={heroSlides[active].src}
+            alt={heroSlides[active].alt}
+            className="w-full h-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-brand-black/30 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-brand-black/20 to-transparent" />
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="absolute inset-0 flex flex-col justify-end px-6 md:px-12 pb-24 md:pb-32 z-10">
+        <div className="max-w-4xl">
+          <motion.h1
+            key={`title-${active}`}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
+            className="text-brand-white font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] mb-6"
+          >
+            Premium Bathware <br />
+            <span className="italic text-brand-sand">& Elegance</span>
+          </motion.h1>
+          <motion.p
+            key={`subtitle-${active}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.76, 0, 0.24, 1] }}
+            className="text-brand-white/80 font-sans text-lg md:text-xl max-w-lg mb-10"
+          >
+            {heroSlides[active].alt}
+          </motion.p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-10 left-6 md:left-12 right-6 md:right-12 flex justify-between items-end z-20">
+        <div className="flex gap-3 items-center">
           {heroSlides.map((_, i) => (
             <button
               key={i}
-              className={`w-2 h-2 rounded-full border-[1.5px] p-0 cursor-pointer transition-all duration-normal ${i === active ? "bg-porcelain border-porcelain scale-[1.15]" : "border-porcelain/70 bg-transparent hover:border-porcelain hover:scale-[1.3] active:scale-90"}`}
               onClick={() => setActive(i)}
+              className="relative w-12 h-[2px] overflow-hidden bg-brand-white/30"
               aria-label={`Go to slide ${i + 1}`}
-            />
+            >
+              {i === active && (
+                <motion.div
+                  layoutId="activeSlideIndicator"
+                  className="absolute inset-0 bg-brand-white"
+                  initial={{ x: "-100%" }}
+                  animate={{ x: "0%" }}
+                  transition={{ duration: 6, ease: "linear" }}
+                />
+              )}
+            </button>
           ))}
         </div>
-        <a className="group flex items-center gap-2 text-porcelain font-dm-mono font-medium text-[13px] leading-none tracking-[0.1em] uppercase no-underline opacity-85 transition-all duration-normal hover:opacity-100 hover:gap-3 active:scale-95" href="#collections" onClick={(e) => handleScroll(e, "collections")}>
-          Explore <span aria-hidden="true" className="transition-transform duration-normal">→</span>
-        </a>
+
+        <motion.a
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          href="#collections"
+          onClick={(e) => handleScroll(e, "collections")}
+          className="flex flex-col items-center gap-2 text-brand-white/80 hover:text-brand-white transition-colors"
+        >
+          <span className="text-xs uppercase tracking-widest font-sans font-medium">Scroll</span>
+          <ArrowDown size={20} className="animate-bounce" />
+        </motion.a>
       </div>
     </div>
   );

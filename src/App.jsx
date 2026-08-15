@@ -1,7 +1,4 @@
 import { lazy, Suspense, useEffect } from "react";
-
-
-import { useRevealMotion } from "./hooks";
 import { categories } from "./data";
 import { Header } from "./components/Header";
 import { HeroCarousel } from "./components/HeroCarousel";
@@ -15,8 +12,6 @@ import { SubnichePage } from "./components/SubnichePage";
 const StoreLocator = lazy(() => import("./StoreLocator.jsx"));
 
 function App() {
-  useRevealMotion();
-
   useEffect(() => {
     if (window.location.hash) {
       window.history.replaceState(null, "", window.location.pathname + window.location.search);
@@ -37,19 +32,16 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen pt-[68px] sm:pt-nav-height">
+    <div className="min-h-screen bg-brand-white selection:bg-brand-gold selection:text-white">
       <Header />
       <main id="top">
-        <section className="relative w-full h-[calc(100svh-68px)] sm:h-[calc(100svh-var(--nav-height))] overflow-hidden" aria-label="Hero carousel" data-reveal>
-          <HeroCarousel />
-        </section>
-
+        <HeroCarousel />
         <MarqueeBand />
         <CollectionsSection />
         <LookbookSection />
         <PartnersMarquee />
       </main>
-      <Suspense fallback={<div className="min-h-[180px] grid place-items-center bg-stone text-muted" id="store-locator">Loading store locator...</div>}>
+      <Suspense fallback={<div className="min-h-[180px] grid place-items-center bg-brand-sand text-brand-gray" id="store-locator">Loading map...</div>}>
         <StoreLocator />
       </Suspense>
       <Footer />

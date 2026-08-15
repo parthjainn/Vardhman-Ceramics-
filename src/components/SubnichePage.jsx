@@ -1,22 +1,51 @@
+import { motion } from "framer-motion";
 import { Header } from "./Header";
-import { Arrow } from "./Arrow";
+import { ArrowLeft } from "lucide-react";
 
 export function SubnichePage({ category }) {
   const [name, detail, image] = category;
 
   return (
-    <main className="min-h-screen pt-[68px] sm:pt-nav-height">
+    <main className="min-h-screen bg-brand-white selection:bg-brand-gold selection:text-white">
       <Header />
-      <section className="min-h-[calc(100svh-68px)] sm:min-h-[calc(100svh-var(--nav-height))] sm:h-auto grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(360px,520px)] bg-stone" data-reveal>
-        <img className="w-full h-full min-h-[360px] md:min-h-0 object-cover saturate-[0.7] contrast-[1.05]" src={image} alt={`${name} collection at Vardhman Ceramics`} data-reveal="image" />
-        <div className="self-center p-[42px_var(--page-pad)_58px] sm:p-[clamp(42px,8vw,118px)]" data-reveal="copy">
-          <p className="mb-[18px] text-muted font-dm-mono font-medium text-[11px] leading-[1.4] tracking-[0.12em] uppercase m-0">Collection</p>
-          <h1 className="m-0 text-ink font-playfair font-semibold text-[clamp(52px,6vw,88px)] leading-[0.98] tracking-normal">{name}</h1>
-          <p className="max-w-[430px] my-6 sm:mb-8 text-muted text-base leading-[1.7]">{detail}</p>
-          <a className="group inline-flex items-center gap-2.5 text-charcoal pb-1 relative font-inter text-[13px] font-bold no-underline transition-all duration-normal active:scale-95" href="/">
-            Back to home <Arrow />
-            <span className="absolute bottom-0 left-0 w-full h-px bg-current origin-right scale-x-100 transition-transform duration-normal group-hover:origin-left group-hover:scale-x-0"></span>
-          </a>
+      <section className="min-h-screen pt-[70px] md:pt-[90px] grid grid-cols-1 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
+          className="relative h-[50vh] lg:h-full w-full overflow-hidden order-2 lg:order-1"
+        >
+          <img 
+            className="absolute inset-0 w-full h-full object-cover" 
+            src={image} 
+            alt={`${name} collection at Vardhman Ceramics`} 
+          />
+          <div className="absolute inset-0 bg-brand-charcoal/10 mix-blend-multiply" />
+        </motion.div>
+        
+        <div className="flex flex-col justify-center px-6 md:px-16 py-16 lg:py-24 order-1 lg:order-2 bg-brand-sand">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.76, 0, 0.24, 1] }}
+          >
+            <p className="mb-4 text-brand-gray font-sans font-medium text-xs tracking-[0.15em] uppercase">
+              Collection
+            </p>
+            <h1 className="m-0 text-brand-black font-serif font-semibold text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight">
+              {name}
+            </h1>
+            <p className="max-w-md my-8 md:my-10 text-brand-black/70 font-sans text-base md:text-lg leading-relaxed">
+              {detail}
+            </p>
+            <a 
+              className="group inline-flex items-center gap-3 text-brand-black pb-2 border-b border-brand-black/20 hover:border-brand-black transition-colors duration-300 font-sans text-sm font-medium" 
+              href="/"
+            >
+              <ArrowLeft size={16} className="transition-transform duration-300 group-hover:-translate-x-1" />
+              Return Home
+            </a>
+          </motion.div>
         </div>
       </section>
     </main>

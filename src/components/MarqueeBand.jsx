@@ -1,11 +1,26 @@
+import { motion } from "framer-motion";
+
 export function MarqueeBand() {
+  const items = ["Material guidance", "Local service", "Premium sanitaryware", "Finish coordination"];
+
   return (
-    <section className="overflow-hidden whitespace-nowrap border-y border-line bg-porcelain relative block" aria-label="Store strengths" data-reveal>
-      <div className="grid grid-cols-2 sm:flex sm:w-full whitespace-normal sm:whitespace-nowrap">
-        <span className="flex-1 min-h-[68px] sm:min-h-[82px] inline-flex items-center justify-center p-[18px_12px] sm:p-[18px_48px] text-muted font-dm-mono font-semibold text-[10px] sm:text-xs leading-[1.3] tracking-[0.1em] uppercase border-b sm:border-b-0 sm:border-l border-line transition-colors duration-normal hover:text-charcoal border-l-0 text-center">Material guidance</span>
-        <span className="flex-1 min-h-[68px] sm:min-h-[82px] inline-flex items-center justify-center p-[18px_12px] sm:p-[18px_48px] text-muted font-dm-mono font-semibold text-[10px] sm:text-xs leading-[1.3] tracking-[0.1em] uppercase border-b sm:border-b-0 border-l border-line transition-colors duration-normal hover:text-charcoal text-center">Local service</span>
-        <span className="flex-1 min-h-[68px] sm:min-h-[82px] inline-flex items-center justify-center p-[18px_12px] sm:p-[18px_48px] text-muted font-dm-mono font-semibold text-[10px] sm:text-xs leading-[1.3] tracking-[0.1em] uppercase sm:border-b-0 border-l-0 sm:border-l border-line transition-colors duration-normal hover:text-charcoal text-center border-b-0">Premium sanitaryware</span>
-        <span className="flex-1 min-h-[68px] sm:min-h-[82px] inline-flex items-center justify-center p-[18px_12px] sm:p-[18px_48px] text-muted font-dm-mono font-semibold text-[10px] sm:text-xs leading-[1.3] tracking-[0.1em] uppercase sm:border-b-0 border-l border-line transition-colors duration-normal hover:text-charcoal text-center border-b-0">Finish coordination</span>
+    <section className="bg-brand-sand py-12 border-b border-brand-charcoal/10 overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-wrap justify-between items-center gap-8">
+        {items.map((item, index) => (
+          <motion.div
+            key={item}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="flex items-center gap-4 group cursor-default"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-brand-gold scale-0 group-hover:scale-100 transition-transform duration-300 origin-center" />
+            <span className="text-brand-gray font-sans font-medium text-xs md:text-sm uppercase tracking-[0.2em] group-hover:text-brand-black transition-colors duration-300">
+              {item}
+            </span>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
