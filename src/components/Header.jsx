@@ -28,9 +28,7 @@ export function Header() {
           times: [0, 0.5, 1], 
           ease: [0.16, 1, 0.3, 1] 
         }}
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 h-[90px] ${
-          scrolled ? "bg-brand-white/80 backdrop-blur-md shadow-sm border-b border-brand-gray/10" : "bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 h-[90px] bg-brand-white backdrop-blur-md shadow-sm border-b border-brand-gray/10`}
       >
         <motion.a 
           initial={{ opacity: 0, x: -20 }}

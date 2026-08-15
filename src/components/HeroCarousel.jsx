@@ -15,7 +15,7 @@ export function HeroCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full h-[100svh] overflow-hidden bg-brand-charcoal">
+    <div className="relative w-full h-[calc(100svh-90px)] mt-[90px] overflow-hidden bg-brand-charcoal">
       <AnimatePresence initial={false}>
         <motion.div
           key={active}
