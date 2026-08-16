@@ -92,6 +92,10 @@ export function CollectionsSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black/90 via-brand-black/20 to-transparent pointer-events-none" />
               
+              <div className="absolute top-5 right-5 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-brand-white/10 backdrop-blur-sm border border-brand-white/20 text-brand-white transition-all duration-500 ease-out group-hover:-rotate-45 group-hover:bg-brand-white group-hover:text-brand-black">
+                <ArrowRight size={20} strokeWidth={1.5} />
+              </div>
+
               <div className="relative z-10 w-full">
                 <h3 className="font-serif text-xl md:text-3xl mb-0 tracking-wide transition-transform duration-500 ease-out group-hover:-translate-y-1">{name}</h3>
                 <p className="font-sans text-brand-sand text-xs sm:text-sm leading-relaxed line-clamp-2 max-h-0 opacity-0 translate-y-3 overflow-hidden mb-0 transition-all duration-500 ease-out group-hover:max-h-24 group-hover:opacity-100 group-hover:translate-y-0 group-hover:mt-2 group-hover:mb-4">

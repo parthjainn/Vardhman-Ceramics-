@@ -137,15 +137,6 @@ export default function StoreLocator() {
             >
               Contact & Location
             </motion.p>
-            <motion.h3
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-serif text-3xl md:text-5xl text-brand-black mb-6"
-            >
-              Anuj Shotriya
-            </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -157,16 +148,28 @@ export default function StoreLocator() {
               Bhilwara, Rajasthan 311001<br/>
               India
             </motion.p>
-            <motion.a
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              href="tel:+919529067107"
-              className="px-8 py-3 bg-brand-black text-brand-white font-sans font-medium text-sm hover:bg-brand-charcoal transition-colors duration-300 rounded-full"
-            >
-              Call +91 95290 67107
-            </motion.a>
+            <div className="flex flex-wrap gap-4">
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                href="tel:+919414111932"
+                className="px-8 py-3 bg-brand-black text-brand-white font-sans font-medium text-sm hover:bg-brand-charcoal transition-colors duration-300 rounded-full"
+              >
+                Call +91 94141 11932
+              </motion.a>
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                href="tel:+919529067107"
+                className="px-8 py-3 bg-brand-black text-brand-white font-sans font-medium text-sm hover:bg-brand-charcoal transition-colors duration-300 rounded-full"
+              >
+                Call +91 95290 67107
+              </motion.a>
+            </div>
           </div>
 
           <div>
