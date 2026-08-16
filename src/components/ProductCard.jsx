@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-export function ProductCard({ title, image, price, label }) {
+export function ProductCard({ title, image, price, label, company }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -13,7 +13,7 @@ export function ProductCard({ title, image, price, label }) {
       {/* 3-Sided "Border/Frame" like Style 5: Padding on Top, Left, Right */}
       <div className="px-2 pt-2">
         {/* The image container has a thin stroke on 3 sides */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-t-[13px] border-t border-l border-r border-brand-black/10">
+        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-t-[13px] border-t border-l border-r border-brand-black/10">
           <motion.img
             src={image}
             alt={title}
@@ -36,7 +36,7 @@ export function ProductCard({ title, image, price, label }) {
         </div>
 
         <p className="text-[10px] font-sans font-bold uppercase tracking-widest text-brand-charcoal/60 mb-1">
-          Signature Collection
+          {company || "Vardhman Ceramics"}
         </p>
         <h3 className="font-serif text-xl md:text-2xl text-brand-black leading-tight truncate pr-12">
           {title}

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Header } from "./Header";
 import { ArrowLeft } from "lucide-react";
 import { ProductCard } from "./ProductCard";
+import { products } from "../products";
 
 export function SubnichePage({ category }) {
   const [name, detail, image, slug] = category;
@@ -50,7 +51,7 @@ export function SubnichePage({ category }) {
         </div>
       </section>
 
-      {slug === "sanitary-wares" && (
+      {products.filter(p => p.categorySlug === slug).length > 0 && (
         <section className="py-24 px-6 md:px-16 bg-brand-white">
           <div className="max-w-7xl mx-auto">
             <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -77,23 +78,16 @@ export function SubnichePage({ category }) {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-              <ProductCard 
-                title="Premium Wash Basin"
-                image="https://www.gstatic.com/marketing-cms/assets/images/fe/2b/131da7ff4e0e9ceee7db4db88485/woah.webp=n-w1024-h724-fcrop64=1,00000000ffffffff-rw"
-                price="Premium Collection"
-                label="New Arrival"
-              />
-              <ProductCard 
-                title="Sleek Modern Sink"
-                image="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
-                price="Signature Series"
-              />
-              <ProductCard 
-                title="Minimalist Faucet"
-                image="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=800&q=80"
-                price="Exclusive Range"
-                label="Bestseller"
-              />
+              {products
+                .filter((p) => p.categorySlug === slug)
+                .map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    title={product.name}
+                    image={product.image}
+                    company={product.company}
+                  />
+                ))}
             </div>
           </div>
         </section>
