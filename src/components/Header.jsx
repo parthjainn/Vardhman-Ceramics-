@@ -17,9 +17,8 @@ export function Header() {
   return (
     <>
       <motion.header
-        initial={{ y: -50, opacity: 0, filter: "blur(10px)" }}
+        initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ 
-          y: [-50, -15, 0], 
           opacity: [0, 0.6, 1], 
           filter: ["blur(10px)", "blur(4px)", "blur(0px)"] 
         }}
@@ -31,8 +30,8 @@ export function Header() {
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 transition-all duration-500 h-[90px] bg-brand-white backdrop-blur-md shadow-sm border-b border-brand-gray/10`}
       >
         <motion.a 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           className="group flex items-center gap-3 no-underline" 
           href="#top" 
@@ -50,8 +49,8 @@ export function Header() {
           {["Collections", "Projects", "Partners"].map((item, index) => (
             <motion.a
               key={item}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.6 + (index * 0.1), ease: "easeOut" }}
               href={`#${item.toLowerCase()}`}
               onClick={(e) => handleScroll(e, item.toLowerCase())}

@@ -2,43 +2,23 @@ export const hero = "/img/premium_wash_basin_1786820455601.jpg";
 export const basin = "/img/premium_bathtub_1786820613833.jpg";
 export const sink = "/img/premium_kitchen_sink_1786820473147.jpg";
 export const faucet = "/img/premium_faucet_1786820793553.jpg";
-export const accessories = "/img/accessories.jpg";
+export const accessories = "/img/bath_accessories.jpg";
 export const pipes = "/img/pipes.jpg";
-export const geyser = "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80";
+export const floorDrain = "/img/floor_drain.jpg";
+export const concealedCistern = "/img/concealed_cistern.jpg";
+export const polymerFitting = "/img/polymer_fitting.jpg";
+export const plumbingAccessories = "/img/plumbing_accessories.jpg";
 
 export const categories = [
-  ["Bathware", "Curated sanitaryware, vanities, and daily-use bathroom essentials.", hero, "bathware"],
-  ["Taps & Faucets", "Architectural fittings with restrained silhouettes and dependable finish.", faucet, "taps"],
-  [
-    "Kitchen",
-    "Functional sinks and fixtures for clean, durable kitchen planning.",
-    sink,
-    "kitchen",
-  ],
-  [
-    "Freestanding Tubs",
-    "Sculptural bathtubs that serve as the centerpiece of modern luxury bathrooms.",
-    basin,
-    "tubs",
-  ],
-  [
-    "Accessories",
-    "Premium accents and detailing to complete your bathroom's aesthetic.",
-    accessories,
-    "accessories"
-  ],
-  [
-    "Pipes & Fittings",
-    "High-grade plumbing solutions ensuring durability and seamless water flow.",
-    pipes,
-    "pipes"
-  ],
-  [
-    "Geysers & Heaters",
-    "Smart, energy-efficient water heating systems for modern homes.",
-    geyser,
-    "geysers"
-  ]
+  ["Sanitary Wares", "Premium sanitaryware including wash basins, WCs, and urinals for modern bathrooms.", hero, "sanitary-wares"],
+  ["CP Bath Fitting", "Chrome-plated bath fittings with refined silhouettes and lasting finish.", faucet, "cp-bath-fitting"],
+  ["Bath Accessories", "Towel holders, soap dispensers, hooks, and accents to complete your bathroom.", accessories, "bath-accessories"],
+  ["Kitchen Sinks", "Functional, durable sinks designed for clean and efficient kitchen planning.", sink, "kitchen-sinks"],
+  ["Floor Drains", "Stainless steel floor drains engineered for seamless drainage and elegant installation.", floorDrain, "floor-drains"],
+  ["Concealed Cistern", "Sleek in-wall cistern systems with dual flush plates for minimal, modern bathrooms.", concealedCistern, "concealed-cistern"],
+  ["Polymer Bath Fitting", "Lightweight, corrosion-free CPVC fittings for reliable and long-lasting plumbing.", polymerFitting, "polymer-bath-fitting"],
+  ["Pipes & Fittings", "High-grade plumbing pipes, connectors, and accessories for complete water solutions.", pipes, "pipes-fittings"],
+  ["Accessories", "General-purpose essentials including adhesives, tapes, sealants, and plumbing tools.", plumbingAccessories, "accessories"],
 ];
 
 export const lookbookImages = [
@@ -49,7 +29,7 @@ export const lookbookImages = [
 ];
 
 export const partners = [
-  "GROHE", "KOHLER", "HINDWARE", "JAQUAR", "CERA", "PARRYWARE", "HANSGROHE", "TOTO", "DURAVIT", "ROCA", "VITRA", "GESSI", "AXOR", "LAUFEN", "VILLEROY & BOCH", "KALDEWEI"
+  "LIPKA", "WATERTEC", "BAFIT", "FINOLEX", "ASTRAL", "RUHE", "AQUA LORETTO", "KEROVIT BY KAJARIA"
 ];
 
 export const heroSlides = [
