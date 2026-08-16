@@ -5,10 +5,10 @@ import { ArrowUp } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="bg-brand-charcoal pt-32 pb-12 px-6 md:px-12 text-brand-white border-t border-brand-gray/20">
-      <div className="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-24">
+    <footer className="bg-brand-charcoal pt-20 md:pt-24 pb-12 px-6 md:px-12 text-brand-white border-t border-brand-gray/20">
+      <div className="max-w-[1600px] mx-auto flex flex-col md:flex-row justify-between items-start gap-12 md:gap-8 mb-12 md:mb-16">
         
-        <div className="md:col-span-5 flex flex-col items-start">
+        <div className="flex flex-col items-start">
           <a className="group inline-flex items-center gap-4 no-underline mb-8" href="#top" onClick={(e) => handleScroll(e, "top")}>
             <div className="w-10 h-10 text-brand-white">
               <BrandLogo light />
@@ -22,9 +22,9 @@ export function Footer() {
           </p>
         </div>
 
-        <div className="md:col-span-3">
+        <div className="flex flex-col items-start md:items-end">
           <h4 className="font-sans font-medium text-brand-white mb-6 uppercase tracking-widest text-xs">Explore</h4>
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col items-start md:items-end gap-4">
             {["Collections", "Projects", "Partners"].map((item) => (
               <li key={item}>
                 <a 
@@ -37,16 +37,6 @@ export function Footer() {
               </li>
             ))}
           </ul>
-        </div>
-
-        <div className="md:col-span-4 flex flex-col items-start md:items-end">
-          <h4 className="font-sans font-medium text-brand-white mb-6 uppercase tracking-widest text-xs">Stay Connected</h4>
-          <a href="mailto:contact@vardhmanceramics.com" className="font-serif text-2xl md:text-3xl hover:text-brand-gold transition-colors duration-300 mb-2">
-            contact@vardhmanceramics.com
-          </a>
-          <a href="tel:+919876543210" className="font-sans text-brand-gray hover:text-brand-white transition-colors duration-300">
-            +91 98765 43210
-          </a>
         </div>
       </div>
 
